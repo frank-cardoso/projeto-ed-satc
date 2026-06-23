@@ -1,0 +1,13 @@
+# Usamos uma base Debian pura, e instalamos o JRE nela. 
+# Isso resolve a incompatibilidade de bibliotecas C++ do DuckDB.
+FROM eclipse-temurin:11-jre-debian
+
+# Baixa a versão JAR do Metabase 0.49.15 direto do site oficial
+RUN apt-get update && apt-get install -y wget && \
+    wget https://downloads.metabase.com/v0.49.15/metabase.jar -O /app/metabase.jar
+
+WORKDIR /app
+EXPOSE 3000
+
+# Executa o Metabase com as permissões corretas
+ENTRYPOINT ["java", "-jar", "/app/metabase.jar"]

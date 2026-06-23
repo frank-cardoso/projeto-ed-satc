@@ -19,6 +19,8 @@ Projeto de Data Lakehouse com arquitetura medallion (Landing, Bronze, Silver, Go
 
 ## Arquitetura do Projeto
 
+
+
 ### Camadas do Data Lakehouse
 
 1. **Landing Zone**: Dados brutos extraídos do MongoDB Atlas em formato JSON
