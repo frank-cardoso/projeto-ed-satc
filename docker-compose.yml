@@ -1,53 +1,28 @@
 version: '3.8'
 
 services:
-  minio:
-    image: minio/minio:latest
-    container_name: minio_datalake
+  metabase:
+    build: 
+      context: .
+      dockerfile: Dockerfile.metabase
+    container_name: metabase
     restart: unless-stopped
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - "3000:3000"
     environment:
-      MINIO_ROOT_USER: minioadmin
-      MINIO_ROOT_PASSWORD: minioadmin123
-    command: server /data --console-address ":9001"
+      MB_DB_FILE: /metabase-data/metabase.db
+      MB_ENCRYPTION_SECRET_KEY: ${MB_ENCRYPTION_SECRET_KEY:-changeme-secret-key-change-in-production}
+      JAVA_OPTS: -Xmx2g
     volumes:
-      - minio_data:/data
+      - ./metabase-data:/metabase-data
+      - ./plugins:/plugins
     networks:
       - data-lake-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
       interval: 30s
       timeout: 20s
-      retries: 3
-
-  minio-setup:
-    image: minio/mc:latest
-    container_name: minio-setup
-    depends_on:
-      minio:
-        condition: service_healthy
-    entrypoint: >
-      /bin/sh -c "
-      sleep 5;
-      /usr/bin/mc alias set myminio http://minio:9000 minioadmin minioadmin123;
-      /usr/bin/mc mb myminio/landing || true;
-      /usr/bin/mc mb myminio/bronze || true;
-      /usr/bin/mc mb myminio/silver || true;
-      /usr/bin/mc mb myminio/gold || true;
-      /usr/bin/mc policy set public myminio/landing;
-      /usr/bin/mc policy set public myminio/bronze;
-      /usr/bin/mc policy set public myminio/silver;
-      /usr/bin/mc policy set public myminio/gold;
-      echo 'Buckets configurados com sucesso!';
-      "
-    networks:
-      - data-lake-network
-
-volumes:
-  minio_data:
-    driver: local
+      retries: 5
 
 networks:
   data-lake-network:
