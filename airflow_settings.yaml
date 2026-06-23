@@ -7,19 +7,27 @@
 
 airflow:
   connections:
-    - conn_id:
-      conn_type:
-      conn_host:
-      conn_schema:
-      conn_login:
-      conn_password:
-      conn_port:
+    - conn_id: tigris_default
+      conn_type: s3
+      conn_host: https://fly.storage.tigris.dev
+      conn_login: ${TIGRIS_ACCESS_KEY}
+      conn_password: ${TIGRIS_SECRET_KEY}
       conn_extra:
-        example_extra_field: example-value
+        aws_access_key_id: ${TIGRIS_ACCESS_KEY}
+        aws_secret_access_key: ${TIGRIS_SECRET_KEY}
+    - conn_id: mongo_default
+      conn_type: mongodb
+      conn_host: db-dados.i50nyqj.mongodb.net
+      conn_login: frank-cardoso
+      conn_password: ${MONGO_PASSWORD}
+      conn_schema: gearlog_erp
+      conn_port: 27017
   pools:
-    - pool_name:
-      pool_slot:
-      pool_description:
+    - pool_name: default_pool
+      pool_slot: 128
+      pool_description: Pool padrão para execução de tarefas
   variables:
-    - variable_name:
-      variable_value:
+    - variable_name: tigris_bucket
+      variable_value: projeto-lakehouse-satc
+    - variable_name: tigris_endpoint
+      variable_value: https://fly.storage.tigris.dev

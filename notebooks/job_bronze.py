@@ -23,8 +23,9 @@ spark = SparkSession.builder \
 
 nome_bucket = "projeto-lakehouse-satc"
 tabelas = [
-    "apolice", "carro", "cliente", "endereco", "estado", 
-    "marca", "modelo", "municipio", "regiao", "sinistro"
+    "mecanicos", "fornecedores", "clientes", "veiculos",
+    "pecas_estoque", "ordens_servico", "itens_os", 
+    "pagamentos", "agendamentos", "avaliacoes"
 ]
 
 for tabela in tabelas:
