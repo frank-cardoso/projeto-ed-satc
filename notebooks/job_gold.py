@@ -27,6 +27,16 @@ DIM_TABLES = {
     "pecas_estoque": "dim_peca",
 }
 
+# Mapeamento explícito de FKs na tabela ordens_servico
+# Apenas dimensões com FK direta em ordens_servico
+FK_MAPPING = {
+    "dim_mecanico": "ID_MECANICO",
+    "dim_veiculo": "ID_VEICULO",
+}
+
+# Dimensões que não têm FK direta em ordens_servico (serão ignoradas no fato)
+DIMENSIONS_WITHOUT_FK = ["dim_cliente", "dim_fornecedor", "dim_peca"]
+
 FACT_TABLE = "fato_ordens_servico"
 
 try:
@@ -69,8 +79,13 @@ def criar_spark_session():
 
 def _determine_key_column(df):
     cols = [c.upper() for c in df.columns]
+    
+    if "_ID" in cols:
+        for c in df.columns:
+            if c.upper() == "_ID":
+                return c
+                
     if "ID" in cols:
-        # preserve original casing
         for c in df.columns:
             if c.upper() == "ID":
                 return c
@@ -204,7 +219,6 @@ def process_fact_ordens_servico(spark):
     path_orders = f"s3a://{NOME_BUCKET}/silver/ordens_servico/"
     path_items = f"s3a://{NOME_BUCKET}/silver/itens_os/"
     path_fact = f"s3a://{NOME_BUCKET}/gold/{FACT_TABLE}/"
-    path_checkpoint = f"s3a://{NOME_BUCKET}/gold/checkpoints/{FACT_TABLE}/"
 
     print(f"[FACT] Iniciando processamento do fato {FACT_TABLE}")
 
@@ -214,28 +228,7 @@ def process_fact_ordens_servico(spark):
         print(f"[FACT] Aviso: não foi possível ler {path_orders} - {e}")
         return False
 
-    # lê checkpoint
-    last_ts = None
-    if HAS_DELTA and DeltaTable.isDeltaTable(spark, path_checkpoint):
-        try:
-            chk = spark.read.format("delta").load(path_checkpoint).select("last_processed").limit(1).collect()
-            if chk:
-                last_ts = chk[0]["last_processed"]
-        except Exception:
-            last_ts = None
-
-    if "DATA_HORA_SILVER" in orders.columns:
-        orders = orders.withColumn("DATA_HORA_SILVER_TS", F.to_timestamp(F.col("DATA_HORA_SILVER")))
-        if last_ts:
-            orders_new = orders.filter(F.col("DATA_HORA_SILVER_TS") > F.lit(last_ts))
-        else:
-            orders_new = orders
-    else:
-        orders_new = orders
-
-    if orders_new.rdd.isEmpty():
-        print("[FACT] Nenhum pedido novo para processar")
-        return True
+    orders_new = orders
 
     # tenta agregar valor total a partir de itens
     try:
@@ -264,6 +257,10 @@ def process_fact_ordens_servico(spark):
 
     # mapear chaves surrogate das dimensões ativas
     for silver_table, dim_name in DIM_TABLES.items():
+        # pular dimensões que não têm FK direta em ordens_servico
+        if dim_name in DIMENSIONS_WITHOUT_FK:
+            continue
+            
         path_dim = f"s3a://{NOME_BUCKET}/gold/{dim_name}/"
         if not (HAS_DELTA and DeltaTable.isDeltaTable(spark, path_dim)):
             continue
@@ -274,11 +271,14 @@ def process_fact_ordens_servico(spark):
         if not dim_key:
             continue
 
-        # procurar coluna de FK correspondente em orders_enriched
-        fk_candidate = _find_column_by_keywords(orders_enriched, [silver_table.upper(), silver_table.split("_")[0].upper()])
-        if not fk_candidate:
-            # tentar por palavras chave comuns
-            fk_candidate = _find_column_by_keywords(orders_enriched, ["CLIENTE", "MECANICO", "VEICULO", "FORNECEDOR", "PECA"])
+        # usar mapeamento explícito se disponível
+        if dim_name in FK_MAPPING:
+            fk_candidate = FK_MAPPING[dim_name]
+        else:
+            # tentar encontrar automaticamente (para dimensões não mapeadas)
+            fk_candidate = _find_column_by_keywords(orders_enriched, [silver_table.upper(), silver_table.split("_")[0].upper()])
+            if not fk_candidate:
+                fk_candidate = _find_column_by_keywords(orders_enriched, ["CLIENTE", "MECANICO", "VEICULO", "FORNECEDOR", "PECA"])
 
         if fk_candidate and fk_candidate in orders_enriched.columns and dim_key in dim_df.columns:
             map_df = dim_df.select(dim_key, "sk").withColumnRenamed(dim_key, fk_candidate)
@@ -321,39 +321,9 @@ def process_fact_ordens_servico(spark):
 
     final_fact = orders_enriched.select(*[c for c in keep_cols if c in orders_enriched.columns])
 
-    # upsert na tabela fato usando Delta (merge) para evitar duplicados
-    if HAS_DELTA and DeltaTable.isDeltaTable(spark, path_fact):
-        try:
-            delta_fact = DeltaTable.forPath(spark, path_fact)
-            src_alias = "s"
-            tgt_alias = "t"
-            merge_condition = f"{tgt_alias}.{fact_key} = {src_alias}.{fact_key}"
-
-            set_map = {c: f"{src_alias}.{c}" for c in final_fact.columns}
-
-            delta_fact.alias(tgt_alias).merge(final_fact.alias(src_alias), merge_condition).whenMatchedUpdate(set=set_map).whenNotMatchedInsert(values=set_map).execute()
-            print(f"[FACT] Upsert realizado em {path_fact}")
-        except Exception as e:
-            print(f"[FACT] Erro no merge do fato: {e}")
-            traceback.print_exc()
-            # fallback para append
-            final_fact.write.format("delta").mode("append").save(path_fact)
-    else:
-        # escrita inicial
-        final_fact.write.format("delta" if HAS_DELTA else "parquet").mode("append").save(path_fact)
-
-    # atualizar checkpoint
-    try:
-        max_ts = final_fact.agg(F.max(F.col(ts_col)).alias("max_ts")).collect()[0]["max_ts"]
-        if max_ts:
-            chk_df = spark.createDataFrame([(max_ts,)], ["last_processed"]) 
-            if HAS_DELTA:
-                chk_df.write.format("delta").mode("overwrite").save(path_checkpoint)
-            else:
-                chk_df.write.mode("overwrite").parquet(path_checkpoint)
-            print(f"[FACT] Checkpoint atualizado: {max_ts}")
-    except Exception as e:
-        print(f"[FACT] Falha ao atualizar checkpoint: {e}")
+    # Escrever em parquet direto (sem Delta) para facilitar consulta
+    final_fact.write.mode("overwrite").parquet(path_fact)
+    print(f"[FACT] Fato escrito em parquet em {path_fact}")
 
     return True
 
