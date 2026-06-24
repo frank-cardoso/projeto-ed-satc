@@ -224,6 +224,7 @@ wheels/
 .installed.cfg
 *.egg
 .venv/
+.venv-docs/
 venv/
 ENV/
 

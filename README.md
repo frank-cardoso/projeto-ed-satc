@@ -77,6 +77,21 @@ astro dev restart
 astro dev stop
 ```
 
+## Documentação do projeto
+
+A documentação técnica completa está em `docs/` e usa MkDocs Material.
+
+```bash
+python -m pip install -r requirements-docs.txt
+python -m mkdocs serve
+```
+
+Para validar e gerar o site estático:
+
+```bash
+python -m mkdocs build --strict
+```
+
 ## Referências
 
 - [Astro CLI Documentation](https://www.astronomer.io/docs/astro/cli/develop-project)
