@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Projeto ED SATC">
+  <defs>
+    <linearGradient id="lake" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#lake)" d="M32 5 7 17v30l25 12 25-12V17L32 5Z"/>
+  <path fill="#fff" fill-opacity=".95" d="M17 21c0-4 7-7 15-7s15 3 15 7-7 7-15 7-15-3-15-7Zm0 10v-5c3 3 9 5 15 5s12-2 15-5v5c0 4-7 7-15 7s-15-3-15-7Zm0 10v-5c3 3 9 5 15 5s12-2 15-5v5c0 4-7 7-15 7s-15-3-15-7Z"/>
+</svg>
