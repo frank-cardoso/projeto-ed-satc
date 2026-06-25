@@ -33,8 +33,8 @@ flowchart TB
 
     subgraph consumo["Consumo analítico"]
         MD["MotherDuck"]
-        MB["Metabase"]
-        MD -.-> MB
+        PB["Power BI"]
+        MD -.-> PB
     end
 
     MA --> JL
@@ -88,9 +88,9 @@ s3a://projeto-lakehouse-satc/
     └── fato_ordens_servico/
 ```
 
-### MotherDuck e Metabase
+### MotherDuck e Power BI
 
-O README define o MotherDuck como warehouse para consumo pelo Metabase. O repositório contém o driver DuckDB e o estado local do Metabase, mas não contém um job legível que publique a Gold no MotherDuck. Essa fronteira deve ser tratada como integração externa ou etapa futura.
+O README define o MotherDuck como warehouse para consumo pelo Power BI. O repositório contém as dependências do DuckDB, mas não contém um job legível que publique a Gold no MotherDuck. Essa fronteira deve ser tratada como integração externa ou etapa futura.
 
 ## Decisões arquiteturais atuais
 

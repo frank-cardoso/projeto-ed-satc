@@ -49,7 +49,7 @@ nav:
       - Configuração: configuracao.md
       - Execução local: execucao.md
       - Dashboard analítico: dashboard.md
-      - Metabase e consumo: metabase.md
+      - Power BI e consumo: powerbi.md
   - Desenvolvimento:
       - Qualidade e limitações: qualidade-limitacoes.md
       - Referência do repositório: referencia.md

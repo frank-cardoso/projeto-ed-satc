@@ -49,21 +49,12 @@ Pela interface do Airflow, dispare manualmente as DAGs nesta ordem:
 
 Aguarde a conclusão de cada etapa antes de iniciar a próxima.
 
-## 5. Iniciar o Metabase
+## 5. Acessar o Power BI
 
-```bash
-docker compose up --build -d
-```
+Como o Power BI não exige a execução de containers locais via Docker Compose, o consumo dos dados tratados deve ser feito diretamente no aplicativo desktop.
 
-Depois do healthcheck, acesse `http://localhost:3000`.
-
-Para interromper o serviço:
-
-```bash
-docker compose down
-```
-
-O estado do Metabase permanece em `metabase-data/`.
+1. Abra o arquivo do projeto (`.pbix` ou `.pbip`) no Power BI Desktop.
+2. Atualize as fontes de dados para garantir que a ferramenta esteja lendo as informações mais recentes da camada Gold (ou do MotherDuck, dependendo do conector configurado).
 
 ## 6. Servir a documentação
 
@@ -89,9 +80,9 @@ A documentação fica disponível em `http://127.0.0.1:8000`.
 
 Para gerar os arquivos estáticos:
 
-```bash
-python -m mkdocs build --strict
-```
+    ```bash
+    python -m mkdocs build --strict
+    ```
 
 A saída será criada em `site/`, pasta já ignorada pelo Git.
 
