@@ -1,41 +1,44 @@
 # Dashboard analítico
 
-Esta página registra os prints do dashboard analítico associado ao consumo da camada Gold. O painel foi documentado a partir do desenho de consumo previsto para Metabase/MotherDuck e dos dados disponíveis no modelo dimensional do projeto.
+Esta página registra o print real do dashboard de **Performance de Serviço** gerado para o projeto. A captura mostra a visão operacional usada para acompanhar ordens de serviço, mecânicos, veículos e marcas atendidas.
 
-!!! note "Escopo do dashboard"
+!!! info "Origem do print"
 
-    O pipeline já materializa dimensões e uma fato simplificada em Gold, mas a rotina versionada de publicação da Gold no MotherDuck ainda não existe no repositório. Por isso, os prints abaixo funcionam como referência visual do dashboard esperado e devem ser atualizados quando o painel real do Metabase for versionado ou exportado.
+    Este print foi fornecido a partir do dashboard gerado pelo projeto e deve ser atualizado sempre que o painel real for alterado.
 
-## Visão geral operacional
+## Performance de Serviço
 
-![Print do dashboard operacional](assets/images/dashboard-operacional.svg)
+![Print real do dashboard Performance de Serviço](assets/images/dashboard-performance-servico.png)
 
-O primeiro print resume indicadores operacionais de ordens de serviço:
+O painel apresenta:
 
-- volume de ordens;
-- tempo médio de atendimento;
-- distribuição por status;
-- evolução mensal;
-- ranking por mecânico;
-- alertas de peças e manutenção.
+- filtro lateral por mecânico;
+- especialidade analisada, neste caso `Estética Automotiva`;
+- mecânico destaque, com total de serviços realizados;
+- quantidade de ordens de serviço;
+- percentual de carros modernos;
+- cliente favorito;
+- ranking de serviços por veículo;
+- distribuição de serviços por marca de veículo.
 
-## Consumo da camada Gold
+## Indicadores visíveis no print
 
-![Print do dashboard da camada Gold](assets/images/dashboard-gold.svg)
-
-O segundo print mostra como o painel se conecta conceitualmente às tabelas analíticas:
-
-- `fato_ordens_servico`;
-- `dim_mecanico`;
-- `dim_veiculo`;
-- dimensões SCD Tipo 2;
-- métricas derivadas para operação e gestão.
+| Indicador | Valor exibido |
+| --- | --- |
+| Especialidade | Estética Automotiva |
+| Mecânico destaque | Manuela Jesus |
+| Serviços do mecânico destaque | 233 |
+| Ordens de serviço | 211 |
+| Carros modernos | 9% |
+| Cliente favorito | Ísis das Neves |
+| Veículo com mais serviços | Civic LX |
+| Marca com mais serviços | Honda |
 
 ## Manutenção dos prints
 
-Quando o dashboard real for alterado no Metabase, atualize os arquivos em `docs/assets/images/` e mantenha esta página sincronizada com:
+Quando o dashboard real for alterado, atualize o arquivo `docs/assets/images/dashboard-performance-servico.png` e mantenha esta página sincronizada com:
 
-1. a fonte de dados usada pelo Metabase;
-2. as tabelas Gold expostas ao consumo;
-3. o significado de cada indicador;
-4. a data ou versão do painel capturado.
+1. a fonte de dados usada pelo painel;
+2. os filtros aplicados no momento da captura;
+3. os indicadores exibidos;
+4. a data ou versão do dashboard capturado.
