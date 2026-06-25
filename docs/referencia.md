@@ -48,10 +48,6 @@ Estende `quay.io/astronomer/astro-runtime:10.4.0` e instala um JRE para atender 
 
 É destinado ao desenvolvimento local. Cadastra conexões, variáveis e pool quando o ambiente Astro inicia.
 
-### `docker-compose.yml`
-
-Constrói e executa somente o Metabase em uma rede Docker chamada `data-lake-network`.
-
 ### `.gitignore`
 
 Protege arquivos `.env`, credenciais, ambientes virtuais, caches Python, logs do Airflow e a saída estática `site/` do MkDocs.
