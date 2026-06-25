@@ -16,6 +16,7 @@ Projeto de Data Lakehouse com arquitetura medallion (Landing, Bronze, Silver, Go
 - **Delta Lake**: Formato de dados ACID para confiabilidade e versionamento
 - **Metabase**: Ferramenta de visualização de dados e dashboards (conectado via MotherDuck)
 - **MkDocs**: Gerador de documentação estática para documentação técnica do projeto
+- **mkdocs-jupyter**: Plugin para renderizar notebooks e scripts Python na documentação
 
 ## Arquitetura do Projeto
 
@@ -75,6 +76,27 @@ astro dev restart
 
 # Parar o ambiente
 astro dev stop
+```
+
+## Documentação do projeto
+
+A documentação técnica completa está em `docs/` e usa MkDocs Material.
+
+```bash
+python -m pip install -r requirements-docs.txt
+python -m mkdocs serve
+```
+
+Para validar e gerar o site estático:
+
+```bash
+python -m mkdocs build --strict
+```
+
+Para publicar no GitHub Pages:
+
+```bash
+python -m mkdocs gh-deploy
 ```
 
 ## Referências

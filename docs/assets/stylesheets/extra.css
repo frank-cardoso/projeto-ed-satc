@@ -1,0 +1,32 @@
+:root {
+  --md-primary-fg-color: #5b3f96;
+  --md-primary-fg-color--light: #7957b8;
+  --md-primary-fg-color--dark: #3d296b;
+  --md-accent-fg-color: #00a9b7;
+}
+
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid.cards > ol > li {
+  border-radius: 0.65rem;
+}
+
+.md-typeset table:not([class]) {
+  border-radius: 0.45rem;
+  overflow: hidden;
+}
+
+.md-typeset h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.md-typeset h2 {
+  font-weight: 650;
+}
+
+.md-typeset img[src*="dashboard-"] {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.75rem;
+  box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.16);
+  margin: 0.6rem 0 1.2rem;
+}
