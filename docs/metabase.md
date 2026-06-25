@@ -26,6 +26,10 @@ O container:
 
 O diretório `plugins/` contém drivers para DuckDB, MongoDB, SQL Server, Oracle, Snowflake e outras fontes. Para o desenho atual, o driver DuckDB é o mais relacionado à conexão com MotherDuck.
 
+## Dashboard documentado
+
+Os prints do painel analítico estão registrados na página [Dashboard analítico](dashboard.md). Eles servem como referência visual do consumo esperado da camada Gold no Metabase.
+
 ## Fronteira não implementada
 
 O pipeline Gold grava arquivos no Tigris, mas não há no repositório uma das seguintes etapas:

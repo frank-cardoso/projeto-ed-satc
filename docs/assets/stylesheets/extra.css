@@ -23,3 +23,10 @@
 .md-typeset h2 {
   font-weight: 650;
 }
+
+.md-typeset img[src*="dashboard-"] {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.75rem;
+  box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.16);
+  margin: 0.6rem 0 1.2rem;
+}
