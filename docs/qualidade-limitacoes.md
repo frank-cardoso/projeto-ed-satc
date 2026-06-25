@@ -44,7 +44,6 @@ Esta página registra o comportamento observado no código atual. Ela não repre
 | Média | Fato marcada como incremental, mas usa `overwrite` | Histórico da fato não é preservado |
 | Média | Exclusões não tratadas no SCD | Dimensões removidas da fonte permanecem ativas |
 | Baixa | Imports duplicados no job Gold | Reduz clareza e manutenção do código |
-| Baixa | Estado e drivers do Metabase no Git | Repositório maior e mais dependente do ambiente local |
 
 ## Cobertura de testes
 
@@ -57,7 +56,7 @@ O único teste versionado é um teste genérico de integridade de DAGs. Ainda n�
 - SCD Tipo 2;
 - relacionamentos e medidas da fato;
 - leitura e escrita no Tigris;
-- integração com MotherDuck ou Metabase.
+- integração com MotherDuck ou Power BI.
 
 ## Critérios sugeridos para evolução
 

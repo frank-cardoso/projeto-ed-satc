@@ -13,7 +13,7 @@ O repositório contém quatro partes principais:
 1. **Geração da massa de dados:** cria registros fictícios com Faker e os insere no MongoDB Atlas.
 2. **Pipeline de dados:** executa jobs PySpark para Landing, Bronze, Silver e Gold.
 3. **Orquestração:** expõe uma DAG diária do Airflow para cada camada.
-4. **Consumo analítico:** disponibiliza um container Metabase com persistência e drivers de bancos de dados.
+4. **Consumo analítico:** estrutura a base de dados tratada para modelagem e consumo externo via Power BI.
 
 ## O que está implementado
 
@@ -24,12 +24,11 @@ O repositório contém quatro partes principais:
 - Cinco dimensões Gold com controle de histórico SCD Tipo 2.
 - Uma tabela fato simplificada de ordens de serviço.
 - Quatro DAGs independentes no Airflow.
-- Container local do Metabase com armazenamento persistente.
 
 ## O que ainda é planejado ou parcial
 
 - Encadeamento automático das quatro DAGs.
-- Carga explícita da Gold no MotherDuck.
+- Carga explícita da Gold no MotherDuck (como ponte para o Power BI).
 - Modelo fato completo com pagamentos, itens, datas e demais dimensões.
 - Regras de qualidade específicas por entidade.
 - Testes unitários e de integração para as transformações.

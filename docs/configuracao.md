@@ -5,7 +5,7 @@
 - Git;
 - Python compatível com as dependências do projeto;
 - Astro CLI e um runtime de containers para o Airflow local;
-- Docker Compose para o Metabase;
+- Power BI Desktop (para acesso e edição dos relatórios analíticos);
 - acesso a um cluster MongoDB Atlas;
 - bucket no Tigris ou outro object storage compatível com S3A.
 
@@ -18,12 +18,11 @@ MONGO_URI=mongodb+srv://<usuario>:<senha>@<cluster>/
 MONGO_DATABASE=gearlog_erp
 MONGO_PASSWORD=<senha>
 
-TIGRIS_ENDPOINT=https://fly.storage.tigris.dev
+TIGRIS_ENDPOINT=[https://fly.storage.tigris.dev](https://fly.storage.tigris.dev)
 TIGRIS_ACCESS_KEY=<access-key>
 TIGRIS_SECRET_KEY=<secret-key>
 TIGRIS_BUCKET=projeto-lakehouse-satc
 
-MB_ENCRYPTION_SECRET_KEY=<segredo-longo-e-aleatorio>
 ```
 
 ## Referência das variáveis
@@ -37,7 +36,6 @@ MB_ENCRYPTION_SECRET_KEY=<segredo-longo-e-aleatorio>
 | `TIGRIS_ACCESS_KEY` | Sim | Todos os jobs Spark | Nenhum |
 | `TIGRIS_SECRET_KEY` | Sim | Todos os jobs Spark | Nenhum |
 | `TIGRIS_BUCKET` | Não | Landing, Silver e Gold | `projeto-lakehouse-satc` |
-| `MB_ENCRYPTION_SECRET_KEY` | Recomendada | Metabase | Valor inseguro de desenvolvimento |
 
 !!! warning "Bucket da Bronze"
 
@@ -62,5 +60,5 @@ As dependências da documentação ficam isoladas em `requirements-docs.txt` par
 
 - Nunca publique o `.env`.
 - Não coloque chaves diretamente em DAGs, notebooks ou páginas da documentação.
-- Substitua o valor padrão de `MB_ENCRYPTION_SECRET_KEY` fora de desenvolvimento.
+- Tenha cuidado ao salvar arquivos do Power BI (.pbix) com credenciais fixas de banco de dados ou dados em cache sensíveis.
 - Para produção, prefira um gerenciador de segredos e conexões nativas do Airflow.

@@ -7,20 +7,18 @@ Projeto de Data Lakehouse com arquitetura medallion (Landing, Bronze, Silver, Go
 ### Serviços em Nuvem
 - **MongoDB Atlas**: Banco de dados NoSQL para armazenamento dos dados de origem (mecânicos, fornecedores, clientes, veículos, peças, ordens de serviço, etc.)
 - **Tigris**: Storage S3-compatible para armazenamento do Data Lakehouse (Landing, Bronze, Silver, Gold)
-- **MotherDuck**: Data warehouse baseado em DuckDB para conexão com Metabase e análise de dados
+- **MotherDuck**: Data warehouse baseado em DuckDB para conexão com Power BI e análise de dados
 
 ### Ferramentas Locais
 - **Astro CLI**: Orquestração de workflows Apache Airflow para desenvolvimento local
 - **Apache Airflow**: Orquestração de pipelines de dados
 - **Apache Spark**: Processamento de dados em larga escala com PySpark
 - **Delta Lake**: Formato de dados ACID para confiabilidade e versionamento
-- **Metabase**: Ferramenta de visualização de dados e dashboards (conectado via MotherDuck)
+- **Power BI**: Ferramenta de modelagem de dados, visualização e relatórios analíticos
 - **MkDocs**: Gerador de documentação estática para documentação técnica do projeto
 - **mkdocs-jupyter**: Plugin para renderizar notebooks e scripts Python na documentação
 
 ## Arquitetura do Projeto
-
-
 
 ### Camadas do Data Lakehouse
 
@@ -31,9 +29,9 @@ Projeto de Data Lakehouse com arquitetura medallion (Landing, Bronze, Silver, Go
 
 ### Estrutura de Pastas
 
-```
+```text
 projeto-ed-satc/
-├── dags/                 # DAGs do Airflow
+├── dags/                # DAGs do Airflow
 │   ├── dag_landing.py   # DAG para ingestão na camada Landing
 │   ├── dag_bronze.py    # DAG para processamento da camada Bronze
 │   ├── dag_silver.py    # DAG para processamento da camada Silver
@@ -43,7 +41,7 @@ projeto-ed-satc/
 │   ├── job_bronze.py    # Processamento Landing -> Bronze
 │   ├── job_silver.py    # Processamento Bronze -> Silver
 │   └── job_gold.py      # Processamento Silver -> Gold
-├── .env                # Variáveis de ambiente (gitignore)
+├── .env                 # Variáveis de ambiente (gitignore)
 ├── airflow_settings.yaml # Configurações do Airflow local
 └── docker-compose.yml  # Compose para serviços auxiliares
 ```
@@ -55,7 +53,7 @@ projeto-ed-satc/
 ```bash
 MONGO_URI="mongodb+srv://<user>:<password>@<cluster>/"
 MONGO_PASSWORD="<password>"
-TIGRIS_ENDPOINT="https://fly.storage.tigris.dev"
+TIGRIS_ENDPOINT="[https://fly.storage.tigris.dev](https://fly.storage.tigris.dev)"
 TIGRIS_ACCESS_KEY="<access_key>"
 TIGRIS_SECRET_KEY="<secret_key>"
 ```
@@ -108,5 +106,5 @@ python -m mkdocs gh-deploy
 - [MongoDB Atlas Documentation](https://www.mongodb.com/docs/atlas/)
 - [Tigris Documentation](https://docs.tigrisdata.com/)
 - [MotherDuck Documentation](https://motherduck.com/docs)
-- [Metabase Documentation](https://www.metabase.com/docs)
+- [Power BI Documentation](https://learn.microsoft.com/pt-br/power-bi/)
 - [MkDocs Documentation](https://www.mkdocs.org/)

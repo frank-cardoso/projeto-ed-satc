@@ -32,7 +32,7 @@ O **Projeto ED SATC** é um Data Lakehouse acadêmico que processa dados de um E
 
     ---
 
-    Configure variáveis, inicie o Airflow e suba o Metabase localmente.
+    Configure variáveis, inicie o Airflow e prepare a conexão com o Power BI.
 
     [:octicons-arrow-right-24: Execução local](execucao.md)
 
@@ -50,12 +50,12 @@ flowchart LR
     S --> F["Gold<br/>Fato Parquet"]
     D -.-> MD["MotherDuck<br/>planejado"]
     F -.-> MD
-    MD -.-> MB["Metabase"]
+    MD -.-> PB["Power BI"]
 ```
 
 !!! info "Estado da implementação"
 
-    Landing, Bronze, Silver, Gold, Airflow e o container local do Metabase possuem implementação no repositório. A transferência da Gold para o MotherDuck é descrita na arquitetura do projeto, mas ainda não possui rotina versionada no código.
+    Landing, Bronze, Silver, Gold e a orquestração com Airflow possuem implementação no repositório. A transferência da Gold para o MotherDuck (como ponte para o Power BI) é descrita na arquitetura do projeto, mas ainda não possui rotina versionada no código.
 
 ## Tecnologias centrais
 
@@ -66,7 +66,7 @@ flowchart LR
 | Processamento | PySpark 3.4.1 | Lê, transforma e grava os conjuntos de dados |
 | Formato | Delta Lake 2.4.0 e Parquet | Mantém tabelas do Lakehouse |
 | Object storage | Tigris | Armazena Landing, Bronze, Silver e Gold via S3A |
-| BI | Metabase | Permite consultas, análises e dashboards |
+| BI | Power BI | Permite consumo dos dados tratados, modelagem e dashboards |
 
 ## Comece por aqui
 

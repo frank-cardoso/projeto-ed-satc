@@ -4,21 +4,17 @@
 
 ```text
 projeto-ed-satc/
-├── .astro/                  # Configuração local do Astro
-├── dags/                    # Definições das DAGs do Airflow
-├── docs/                    # Fontes desta documentação
-├── include/                 # Utilitários e gerador de massa
-├── metabase-data/           # Banco interno persistente do Metabase
-├── notebooks/               # Jobs PySpark das quatro camadas
-├── plugins/                 # Drivers adicionais do Metabase
-├── tests/dags/              # Testes de integridade das DAGs
+├── .astro/                # Configuração local do Astro
+├── dags/                  # Definições das DAGs do Airflow
+├── docs/                  # Fontes desta documentação
+├── include/               # Utilitários e gerador de massa
+├── notebooks/             # Jobs PySpark das quatro camadas
+├── tests/dags/            # Testes de integridade das DAGs
 ├── airflow_settings.yaml    # Conexões, variáveis e pools locais
-├── docker-compose.yml       # Serviço local do Metabase
-├── Dockerfile               # Imagem do Astro Runtime
-├── Dockerfile.metabase      # Imagem do Metabase
-├── mkdocs.yml               # Configuração desta documentação
-├── requirements.txt         # Dependências do pipeline
-└── requirements-docs.txt    # Dependências da documentação
+├── Dockerfile             # Imagem do Astro Runtime
+├── mkdocs.yml             # Configuração desta documentação
+├── requirements.txt       # Dependências do pipeline
+└── requirements-docs.txt  # Dependências da documentação
 ```
 
 ## Mapeamento DAG → job
