@@ -900,14 +900,14 @@
   
   
     <li class="md-nav__item">
-      <a href="metabase.html" class="md-nav__link">
+      <a href="powerbi.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Metabase e consumo
+    Power BI e consumo
   
 
     
@@ -1211,7 +1211,7 @@
 <li>Git;</li>
 <li>Python compatível com as dependências do projeto;</li>
 <li>Astro CLI e um runtime de containers para o Airflow local;</li>
-<li>Docker Compose para o Metabase;</li>
+<li>Power BI Desktop (para acesso e edição dos relatórios analíticos);</li>
 <li>acesso a um cluster MongoDB Atlas;</li>
 <li>bucket no Tigris ou outro object storage compatível com S3A.</li>
 </ul>
@@ -1221,12 +1221,10 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>MONGO_DATABASE=gearlog_erp
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>MONGO_PASSWORD=&lt;senha&gt;
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>TIGRIS_ENDPOINT=https://fly.storage.tigris.dev
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>TIGRIS_ENDPOINT=[https://fly.storage.tigris.dev](https://fly.storage.tigris.dev)
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>TIGRIS_ACCESS_KEY=&lt;access-key&gt;
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>TIGRIS_SECRET_KEY=&lt;secret-key&gt;
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>TIGRIS_BUCKET=projeto-lakehouse-satc
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>MB_ENCRYPTION_SECRET_KEY=&lt;segredo-longo-e-aleatorio&gt;
 </code></pre></div>
 <h2 id="referencia-das-variaveis">Referência das variáveis<a class="headerlink" href="#referencia-das-variaveis" title="Permanent link">&para;</a></h2>
 <table>
@@ -1281,12 +1279,6 @@
 <td>Landing, Silver e Gold</td>
 <td><code>projeto-lakehouse-satc</code></td>
 </tr>
-<tr>
-<td><code>MB_ENCRYPTION_SECRET_KEY</code></td>
-<td>Recomendada</td>
-<td>Metabase</td>
-<td>Valor inseguro de desenvolvimento</td>
-</tr>
 </tbody>
 </table>
 <div class="admonition warning">
@@ -1307,7 +1299,7 @@
 <ul>
 <li>Nunca publique o <code>.env</code>.</li>
 <li>Não coloque chaves diretamente em DAGs, notebooks ou páginas da documentação.</li>
-<li>Substitua o valor padrão de <code>MB_ENCRYPTION_SECRET_KEY</code> fora de desenvolvimento.</li>
+<li>Tenha cuidado ao salvar arquivos do Power BI (.pbix) com credenciais fixas de banco de dados ou dados em cache sensíveis.</li>
 <li>Para produção, prefira um gerenciador de segredos e conexões nativas do Airflow.</li>
 </ul>
 

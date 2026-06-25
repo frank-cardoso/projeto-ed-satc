@@ -846,10 +846,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-iniciar-o-metabase" class="md-nav__link">
+  <a href="#5-acessar-o-power-bi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Iniciar o Metabase
+        5. Acessar o Power BI
       
     </span>
   </a>
@@ -911,14 +911,14 @@
   
   
     <li class="md-nav__item">
-      <a href="metabase.html" class="md-nav__link">
+      <a href="powerbi.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Metabase e consumo
+    Power BI e consumo
   
 
     
@@ -1181,10 +1181,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-iniciar-o-metabase" class="md-nav__link">
+  <a href="#5-acessar-o-power-bi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Iniciar o Metabase
+        5. Acessar o Power BI
       
     </span>
   </a>
@@ -1262,36 +1262,36 @@
 <li><code>processamento_camada_gold</code>.</li>
 </ol>
 <p>Aguarde a conclusão de cada etapa antes de iniciar a próxima.</p>
-<h2 id="5-iniciar-o-metabase">5. Iniciar o Metabase<a class="headerlink" href="#5-iniciar-o-metabase" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>--build<span class="w"> </span>-d
-</code></pre></div>
-<p>Depois do healthcheck, acesse <code>http://localhost:3000</code>.</p>
-<p>Para interromper o serviço:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down
-</code></pre></div>
-<p>O estado do Metabase permanece em <code>metabase-data/</code>.</p>
+<h2 id="5-acessar-o-power-bi">5. Acessar o Power BI<a class="headerlink" href="#5-acessar-o-power-bi" title="Permanent link">&para;</a></h2>
+<p>Como o Power BI não exige a execução de containers locais via Docker Compose, o consumo dos dados tratados deve ser feito diretamente no aplicativo desktop.</p>
+<ol>
+<li>Abra o arquivo do projeto (<code>.pbix</code> ou <code>.pbip</code>) no Power BI Desktop.</li>
+<li>Atualize as fontes de dados para garantir que a ferramenta esteja lendo as informações mais recentes da camada Gold (ou do MotherDuck, dependendo do conector configurado).</li>
+</ol>
 <h2 id="6-servir-a-documentacao">6. Servir a documentação<a class="headerlink" href="#6-servir-a-documentacao" title="Permanent link">&para;</a></h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">PowerShell</label><label for="__tabbed_1_2">Bash</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">py</span> <span class="n">-m</span> <span class="n">venv</span> <span class="p">.</span><span class="n">venv-docs</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">.\.</span><span class="n">venv-docs</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Activate</span><span class="p">.</span><span class="n">ps1</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">python</span> <span class="n">-m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">-r</span> <span class="n">requirements-docs</span><span class="p">.</span><span class="n">txt</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">python</span> <span class="n">-m</span> <span class="n">mkdocs</span> <span class="n">serve</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">py</span> <span class="n">-m</span> <span class="n">venv</span> <span class="p">.</span><span class="n">venv-docs</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">.\.</span><span class="n">venv-docs</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Activate</span><span class="p">.</span><span class="n">ps1</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">python</span> <span class="n">-m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">-r</span> <span class="n">requirements-docs</span><span class="p">.</span><span class="n">txt</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">python</span> <span class="n">-m</span> <span class="n">mkdocs</span> <span class="n">serve</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv-docs
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">source</span><span class="w"> </span>.venv-docs/bin/activate
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-docs.txt
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>serve
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv-docs
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">source</span><span class="w"> </span>.venv-docs/bin/activate
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-docs.txt
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>serve
 </code></pre></div>
 </div>
 </div>
 </div>
 <p>A documentação fica disponível em <code>http://127.0.0.1:8000</code>.</p>
 <p>Para gerar os arquivos estáticos:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict
+<div class="highlight"><pre><span></span><code>```bash
+python -m mkdocs build --strict
+```
 </code></pre></div>
 <p>A saída será criada em <code>site/</code>, pasta já ignorada pelo Git.</p>
 <p>O projeto gera arquivos <code>.html</code> explícitos. Assim, também é possível abrir

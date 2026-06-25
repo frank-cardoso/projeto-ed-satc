@@ -900,14 +900,14 @@
   
   
     <li class="md-nav__item">
-      <a href="metabase.html" class="md-nav__link">
+      <a href="powerbi.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Metabase e consumo
+    Power BI e consumo
   
 
     
@@ -1215,7 +1215,7 @@
 <li><strong>Geração da massa de dados:</strong> cria registros fictícios com Faker e os insere no MongoDB Atlas.</li>
 <li><strong>Pipeline de dados:</strong> executa jobs PySpark para Landing, Bronze, Silver e Gold.</li>
 <li><strong>Orquestração:</strong> expõe uma DAG diária do Airflow para cada camada.</li>
-<li><strong>Consumo analítico:</strong> disponibiliza um container Metabase com persistência e drivers de bancos de dados.</li>
+<li><strong>Consumo analítico:</strong> estrutura a base de dados tratada para modelagem e consumo externo via Power BI.</li>
 </ol>
 <h2 id="o-que-esta-implementado">O que está implementado<a class="headerlink" href="#o-que-esta-implementado" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1226,12 +1226,11 @@
 <li>Cinco dimensões Gold com controle de histórico SCD Tipo 2.</li>
 <li>Uma tabela fato simplificada de ordens de serviço.</li>
 <li>Quatro DAGs independentes no Airflow.</li>
-<li>Container local do Metabase com armazenamento persistente.</li>
 </ul>
 <h2 id="o-que-ainda-e-planejado-ou-parcial">O que ainda é planejado ou parcial<a class="headerlink" href="#o-que-ainda-e-planejado-ou-parcial" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Encadeamento automático das quatro DAGs.</li>
-<li>Carga explícita da Gold no MotherDuck.</li>
+<li>Carga explícita da Gold no MotherDuck (como ponte para o Power BI).</li>
 <li>Modelo fato completo com pagamentos, itens, datas e demais dimensões.</li>
 <li>Regras de qualidade específicas por entidade.</li>
 <li>Testes unitários e de integração para as transformações.</li>

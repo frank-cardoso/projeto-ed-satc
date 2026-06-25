@@ -27,7 +27,7 @@
     
     
       
-        <title>Metabase e consumo - Projeto ED SATC</title>
+        <title>Power BI e consumo - Projeto ED SATC</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#metabase-e-consumo-analitico" class="md-skip">
+        <a href="#power-bi-e-consumo-analitico" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Metabase e consumo
+              Power BI e consumo
             
           </span>
         </div>
@@ -814,7 +814,7 @@
   <span class="md-ellipsis">
     
   
-    Metabase e consumo
+    Power BI e consumo
   
 
     
@@ -825,14 +825,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="metabase.html" class="md-nav__link md-nav__link--active">
+      <a href="powerbi.html" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    Metabase e consumo
+    Power BI e consumo
   
 
     
@@ -858,10 +858,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#servico-local" class="md-nav__link">
+  <a href="#ambiente-de-consumo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Serviço local
+        Ambiente de consumo
       
     </span>
   </a>
@@ -869,10 +869,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#persistencia" class="md-nav__link">
+  <a href="#persistencia-e-versionamento" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Persistência
+        Persistência e versionamento
       
     </span>
   </a>
@@ -880,10 +880,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#drivers" class="md-nav__link">
+  <a href="#conectores" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Drivers
+        Conectores
       
     </span>
   </a>
@@ -1137,10 +1137,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#servico-local" class="md-nav__link">
+  <a href="#ambiente-de-consumo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Serviço local
+        Ambiente de consumo
       
     </span>
   </a>
@@ -1148,10 +1148,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#persistencia" class="md-nav__link">
+  <a href="#persistencia-e-versionamento" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Persistência
+        Persistência e versionamento
       
     </span>
   </a>
@@ -1159,10 +1159,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#drivers" class="md-nav__link">
+  <a href="#conectores" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Drivers
+        Conectores
       
     </span>
   </a>
@@ -1219,7 +1219,7 @@
 
 
   
-    <a href="https://github.com/frank-cardoso/projeto-ed-satc/edit/main/docs/metabase.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/frank-cardoso/projeto-ed-satc/edit/main/docs/powerbi.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1227,45 +1227,40 @@
   
 
 
-<h1 id="metabase-e-consumo-analitico">Metabase e consumo analítico<a class="headerlink" href="#metabase-e-consumo-analitico" title="Permanent link">&para;</a></h1>
-<h2 id="servico-local">Serviço local<a class="headerlink" href="#servico-local" title="Permanent link">&para;</a></h2>
-<p>O <code>docker-compose.yml</code> define somente o serviço Metabase. O Airflow continua sendo administrado pelo Astro CLI em outro ambiente.</p>
-<p>O container:</p>
-<ul>
-<li>é construído por <code>Dockerfile.metabase</code>;</li>
-<li>baixa o Metabase 0.49.15;</li>
-<li>publica a porta <code>3000</code>;</li>
-<li>limita a JVM a 2 GB de memória;</li>
-<li>persiste a aplicação em <code>metabase-data/</code>;</li>
-<li>carrega drivers adicionais de <code>plugins/</code>;</li>
-<li>expõe um healthcheck em <code>/api/health</code>.</li>
-</ul>
-<h2 id="persistencia">Persistência<a class="headerlink" href="#persistencia" title="Permanent link">&para;</a></h2>
-<p><code>MB_DB_FILE</code> aponta para <code>/metabase-data/metabase.db</code>. O volume local mantém usuários, conexões, perguntas e dashboards entre reinicializações.</p>
+<h1 id="power-bi-e-consumo-analitico">Power BI e consumo analítico<a class="headerlink" href="#power-bi-e-consumo-analitico" title="Permanent link">&para;</a></h1>
+<h2 id="ambiente-de-consumo">Ambiente de consumo<a class="headerlink" href="#ambiente-de-consumo" title="Permanent link">&para;</a></h2>
+<p>Diferente da orquestração que roda localmente via Astro CLI, o Power BI atua como uma ferramenta externa ao pipeline de dados. O consumo e a visualização devem ser feitos através do <strong>Power BI Desktop</strong> (para modelagem e desenvolvimento das análises) e publicados no <strong>Serviço do Power BI</strong> (na nuvem, caso haja necessidade de compartilhamento).</p>
+<p>Com isso, a arquitetura do projeto não requer containers adicionais no <code>docker-compose.yml</code> para a camada de visualização, aliviando o consumo de recursos da máquina local.</p>
+<h2 id="persistencia-e-versionamento">Persistência e versionamento<a class="headerlink" href="#persistencia-e-versionamento" title="Permanent link">&para;</a></h2>
+<p>O desenvolvimento no Power BI é tradicionalmente salvo em arquivos <code>.pbix</code>.</p>
 <div class="admonition warning">
-<p class="admonition-title">Banco interno versionado</p>
-<p>O banco H2 do Metabase está presente no repositório. Além de aumentar o tamanho do Git, esse arquivo pode transportar configuração específica do ambiente. Evite armazenar segredos sem uma chave de criptografia segura.</p>
+<p class="admonition-title">Arquivos binários no repositório</p>
+<p>O arquivo <code>.pbix</code> é um binário que pode salvar dados em cache importados para o modelo. Commitá-lo com dados carregados inflará rapidamente o tamanho do repositório Git, além de apresentar riscos de vazamento de informações. Ao versionar o projeto, prefira salvar o arquivo vazio (sem dados carregados) ou explore o formato de projeto do Power BI (<code>.pbip</code>), que salva metadados em texto plano e facilita o versionamento.</p>
 </div>
-<h2 id="drivers">Drivers<a class="headerlink" href="#drivers" title="Permanent link">&para;</a></h2>
-<p>O diretório <code>plugins/</code> contém drivers para DuckDB, MongoDB, SQL Server, Oracle, Snowflake e outras fontes. Para o desenho atual, o driver DuckDB é o mais relacionado à conexão com MotherDuck.</p>
-<h2 id="dashboard-documentado">Dashboard documentado<a class="headerlink" href="#dashboard-documentado" title="Permanent link">&para;</a></h2>
-<p>Os prints do painel analítico estão registrados na página <a href="dashboard.html">Dashboard analítico</a>. Eles servem como referência visual do consumo esperado da camada Gold no Metabase.</p>
-<h2 id="fronteira-nao-implementada">Fronteira não implementada<a class="headerlink" href="#fronteira-nao-implementada" title="Permanent link">&para;</a></h2>
-<p>O pipeline Gold grava arquivos no Tigris, mas não há no repositório uma das seguintes etapas:</p>
+<h2 id="conectores">Conectores<a class="headerlink" href="#conectores" title="Permanent link">&para;</a></h2>
+<p>Para que o Power BI consuma os dados finais gerados pelo Lakehouse, a abordagem de conexão depende de onde os dados estão expostos:</p>
 <ul>
-<li>publicação da Gold em tabelas MotherDuck;</li>
-<li>criação de views DuckDB sobre os objetos do Tigris;</li>
-<li>catálogo compartilhado entre Spark e Metabase;</li>
-<li>job de sincronização para o warehouse.</li>
+<li><strong>ODBC / MotherDuck:</strong> A rota arquitetural mais aderente ao projeto é utilizar o MotherDuck como warehouse. O Power BI pode se conectar a ele utilizando um driver ODBC previamente configurado no sistema operacional.</li>
+<li><strong>Leitura Direta:</strong> Em caráter de homologação ou testes rápidos, o Power BI também possui capacidade nativa de ler os arquivos Delta/Parquet diretamente, embora perca as vantagens de processamento do warehouse.</li>
 </ul>
-<p>Portanto, a documentação não assume que o Metabase já consome automaticamente a Gold. Essa conexão precisa ser configurada externamente ou implementada em uma próxima evolução.</p>
+<h2 id="dashboard-documentado">Dashboard documentado<a class="headerlink" href="#dashboard-documentado" title="Permanent link">&para;</a></h2>
+<p>Os prints do painel analítico estão registrados na página <a href="dashboard.html">Dashboard analítico</a>. Eles servem como referência visual do consumo esperado da camada Gold no Power BI.</p>
+<h2 id="fronteira-nao-implementada">Fronteira não implementada<a class="headerlink" href="#fronteira-nao-implementada" title="Permanent link">&para;</a></h2>
+<p>O pipeline Gold atual grava os dados no Tigris, mas não há no repositório uma das seguintes etapas automatizadas:</p>
+<ul>
+<li>publicação da Gold em tabelas no MotherDuck;</li>
+<li>criação de views DuckDB sobre os objetos do Tigris;</li>
+<li>integração de um catálogo compartilhado;</li>
+<li>job de sincronização para o warehouse analítico.</li>
+</ul>
+<p>Portanto, a documentação não assume que o Power BI já consome os dados da Gold em tempo real. Essa conexão precisa ser provisionada manualmente pelo desenvolvedor ou implementada em uma próxima evolução do pipeline.</p>
 <h2 id="caminho-recomendado-para-evolucao">Caminho recomendado para evolução<a class="headerlink" href="#caminho-recomendado-para-evolucao" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Definir se MotherDuck será o warehouse oficial ou apenas uma camada de consulta.</li>
-<li>Criar um job versionado de publicação ou sincronização.</li>
-<li>Registrar esquema, tabelas e estratégia de atualização.</li>
-<li>Configurar a conexão do Metabase sem expor credenciais.</li>
-<li>Versionar a definição lógica dos dashboards, quando possível.</li>
+<li>Definir se o MotherDuck será mantido como o warehouse oficial ou se será substituída a estratégia de consumo.</li>
+<li>Criar um job versionado no Airflow para publicação ou sincronização dos dados da Gold para o warehouse.</li>
+<li>Registrar esquema, tabelas e política de atualização incremental.</li>
+<li>Configurar a conexão do Power BI via ODBC garantindo a segurança de credenciais.</li>
+<li>Adotar o formato de salvamento <code>.pbip</code> para versionar a semântica e as medidas DAX de forma transparente no GitHub.</li>
 </ol>
 
 

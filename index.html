@@ -871,14 +871,14 @@
   
   
     <li class="md-nav__item">
-      <a href="metabase.html" class="md-nav__link">
+      <a href="powerbi.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Metabase e consumo
+    Power BI e consumo
   
 
     
@@ -1179,7 +1179,7 @@
 <li>
 <p>:material-play-circle-outline:{ .lg .middle } <strong>Execute o ambiente</strong></p>
 <hr />
-<p>Configure variáveis, inicie o Airflow e suba o Metabase localmente.</p>
+<p>Configure variáveis, inicie o Airflow e prepare a conexão com o Power BI.</p>
 <p><a href="execucao.html">:octicons-arrow-right-24: Execução local</a></p>
 </li>
 </ul>
@@ -1194,10 +1194,10 @@
     S --&gt; F["Gold&lt;br/&gt;Fato Parquet"]
     D -.-&gt; MD["MotherDuck&lt;br/&gt;planejado"]
     F -.-&gt; MD
-    MD -.-&gt; MB["Metabase"]</code></pre>
+    MD -.-&gt; PB["Power BI"]</code></pre>
 <div class="admonition info">
 <p class="admonition-title">Estado da implementação</p>
-<p>Landing, Bronze, Silver, Gold, Airflow e o container local do Metabase possuem implementação no repositório. A transferência da Gold para o MotherDuck é descrita na arquitetura do projeto, mas ainda não possui rotina versionada no código.</p>
+<p>Landing, Bronze, Silver, Gold e a orquestração com Airflow possuem implementação no repositório. A transferência da Gold para o MotherDuck (como ponte para o Power BI) é descrita na arquitetura do projeto, mas ainda não possui rotina versionada no código.</p>
 </div>
 <h2 id="tecnologias-centrais">Tecnologias centrais<a class="headerlink" href="#tecnologias-centrais" title="Permanent link">&para;</a></h2>
 <table>
@@ -1236,8 +1236,8 @@
 </tr>
 <tr>
 <td>BI</td>
-<td>Metabase</td>
-<td>Permite consultas, análises e dashboards</td>
+<td>Power BI</td>
+<td>Permite consumo dos dados tratados, modelagem e dashboards</td>
 </tr>
 </tbody>
 </table>

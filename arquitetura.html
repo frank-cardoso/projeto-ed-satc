@@ -611,10 +611,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#motherduck-e-metabase" class="md-nav__link">
+  <a href="#motherduck-e-power-bi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MotherDuck e Metabase
+        MotherDuck e Power BI
       
     </span>
   </a>
@@ -939,14 +939,14 @@
   
   
     <li class="md-nav__item">
-      <a href="metabase.html" class="md-nav__link">
+      <a href="powerbi.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Metabase e consumo
+    Power BI e consumo
   
 
     
@@ -1232,10 +1232,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#motherduck-e-metabase" class="md-nav__link">
+  <a href="#motherduck-e-power-bi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MotherDuck e Metabase
+        MotherDuck e Power BI
       
     </span>
   </a>
@@ -1315,8 +1315,8 @@
 
     subgraph consumo["Consumo analítico"]
         MD["MotherDuck"]
-        MB["Metabase"]
-        MD -.-&gt; MB
+        PB["Power BI"]
+        MD -.-&gt; PB
     end
 
     MA --&gt; JL
@@ -1357,8 +1357,8 @@
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    ├── dim_peca/
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    └── fato_ordens_servico/
 </code></pre></div>
-<h3 id="motherduck-e-metabase">MotherDuck e Metabase<a class="headerlink" href="#motherduck-e-metabase" title="Permanent link">&para;</a></h3>
-<p>O README define o MotherDuck como warehouse para consumo pelo Metabase. O repositório contém o driver DuckDB e o estado local do Metabase, mas não contém um job legível que publique a Gold no MotherDuck. Essa fronteira deve ser tratada como integração externa ou etapa futura.</p>
+<h3 id="motherduck-e-power-bi">MotherDuck e Power BI<a class="headerlink" href="#motherduck-e-power-bi" title="Permanent link">&para;</a></h3>
+<p>O README define o MotherDuck como warehouse para consumo pelo Power BI. O repositório contém as dependências do DuckDB, mas não contém um job legível que publique a Gold no MotherDuck. Essa fronteira deve ser tratada como integração externa ou etapa futura.</p>
 <h2 id="decisoes-arquiteturais-atuais">Decisões arquiteturais atuais<a class="headerlink" href="#decisoes-arquiteturais-atuais" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
